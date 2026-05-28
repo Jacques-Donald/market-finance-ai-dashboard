@@ -1,0 +1,14 @@
+# Configuration Google Cloud (URGENT & CRITIQUE)
+google_credentials.json
+
+# Environnement virtuel Python
+.venv/
+venv/
+env/
+__pycache__/
+*.pyc
+
+# Fichiers système et IDE
+.DS_Store
+.vscode/
+.idea/
