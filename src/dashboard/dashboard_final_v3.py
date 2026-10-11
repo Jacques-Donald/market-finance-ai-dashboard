@@ -4,6 +4,7 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 import plotly.graph_objects as go
+from google.oauth2 import service_account
 from google.cloud import bigquery
 
 # --- CONFIGURATION GCP ---
@@ -12,7 +13,13 @@ root_dir = os.path.dirname(os.path.dirname(current_dir))
 credentials_path = os.path.join(root_dir, "credentials.json")
 
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = credentials_path
-bq_client = bigquery.Client()
+#bq_client = bigquery.Client()
+
+credentials = service_account.Credentials.from_service_account_info(
+    st.secrets["gcp_service_account"]
+)
+bg_client = bigquery.Client(credentials=credentials, project=credentials.project_id)
+
 
 # --- CONFIGURATION STREAMLIT ---
 st.set_page_config(page_title="Market Finance AI Dashboard", layout="wide")
