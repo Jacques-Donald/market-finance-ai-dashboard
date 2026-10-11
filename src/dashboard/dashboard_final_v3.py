@@ -7,6 +7,16 @@ import plotly.graph_objects as go
 from google.oauth2 import service_account
 from google.cloud import bigquery
 
+
+@st.cache_resource
+def get_bq_client():
+    credentials = service_account.Credentials.from_service_account_info(
+        st.secrets["gcp_service_account"]
+    )
+    return bigquery.Client(credentials=credentials, project=credentials.project_id)
+
+bq_client = get_bq_client()
+
 # --- CONFIGURATION GCP ---
 current_dir = os.path.dirname(os.path.abspath(__file__))
 root_dir = os.path.dirname(os.path.dirname(current_dir))
@@ -15,10 +25,10 @@ credentials_path = os.path.join(root_dir, "credentials.json")
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = credentials_path
 #bq_client = bigquery.Client()
 
-credentials = service_account.Credentials.from_service_account_info(
-    st.secrets["gcp_service_account"]
-)
-bg_client = bigquery.Client(credentials=credentials, project=credentials.project_id)
+#credentials = service_account.Credentials.from_service_account_info(
+    #st.secrets["gcp_service_account"]
+
+#bg_client = bigquery.Client(credentials=credentials, project=credentials.project_id)
 
 
 # --- CONFIGURATION STREAMLIT ---
