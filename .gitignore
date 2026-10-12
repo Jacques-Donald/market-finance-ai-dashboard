@@ -11,4 +11,9 @@ __pycache__/
 # Fichiers système et IDE
 .DS_Store
 .vscode/
-.idea/
+.idea/.env
+.env
+.streamlit/secrets.toml
+credentials.json
+.env
+venv/
