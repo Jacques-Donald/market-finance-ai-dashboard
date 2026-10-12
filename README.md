@@ -14,7 +14,6 @@ Layer RAW & ENRICHED (Data Engineering) : extraction quotidienne synchrone (marc
 Layer SENTIMENT (NLP / FinBERT) : collecte des titres d'actualités financières, scoring par FinBERT, agrégation quotidienne par actif et alignement temporel sur les données de marché (voir section dédiée ci-dessous).
 Layer ANALYTICS (Machine Learning) : extraction des features (techniques, macro et sentiment) et entraînement isolé par actif d'un XGBoost Regressor. Validation par split temporel (80 % train chronologique / 20 % test) pour interdire tout data leakage, puis injection des inférences en base.
 Layer RESTITUTION (Application) : consommation des prédictions BigQuery via FastAPI (port 8006), couplée à un dashboard Streamlit doté d'un Risk Engine temps réel (volatilité annualisée, Value-at-Risk 95 %, ratio de Sharpe) et d'un indicateur de sentiment de marché.
-Pour le détail des choix d'architecture, de la conformité RGPD et des schémas de données, voir ARCHITECTURE.md.
 
 
 
